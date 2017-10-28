@@ -1,0 +1,21 @@
+---
+- hosts: all
+  remote_user: vagrant
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: logon to hub
+    docker_login:
+      username: thamps
+      password: bronzedoor70
+      email: ajith.thampi@gmail.com
+  - name: destroy web container
+    docker_container:
+      name: webapp
+      image: thamps/web:v1
+      state: absent 
+  - name: destroy db 
+    docker_container:
+      name: db 
+      image: sameersbn/mysql:latest 
+      state: absent 

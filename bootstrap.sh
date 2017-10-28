@@ -9,3 +9,6 @@ apt-get update
 apt-get -y install software-properties-common
 apt-get -y install ansible
 
+#Create the required ansible roles directory
+mkdir /etc/ansible/roles -p
+chmod 777 /etc/ansible/roles

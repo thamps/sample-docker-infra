@@ -1,0 +1,37 @@
+---
+- hosts: all
+  remote_user: vagrant
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: logon to my hub
+    docker_login:
+      username: thamps
+      password: bronzedoor70
+      email: ajith.thampi@gmail.com
+  - name: create database mysql container
+    docker_container:
+      name: mysqldb
+      image: library/mysql 
+      state: started
+      exposed_ports:
+        - 3306
+      env:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: aristocrat
+        MYSQL_PASSWORD: test
+        MYSQL_DATABASE: simple
+      volumes:
+        - /tmp/scripts:/docker-entrypoint-initdb.d 
+  - name: create web application container
+    docker_container:
+      name: webapp
+      image: thamps/web:v1
+      state: started
+      pull: yes
+      links:
+        - "mysqldb:db"
+      exposed_ports:
+        - 80
+      ports:
+        "80:80"

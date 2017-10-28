@@ -16,6 +16,12 @@ Vagrant.configure(2) do |config|
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/runner.pub"
   config.vm.provision :shell, path: "bootstrap.sh"
 
+  config.vm.provision 'ansible', run: 'always', type: :ansible_local do |ansible|
+#    ansible.galaxy_role_file = '/vagrant/requirements.yml'
+#   ansible.galaxy_roles_path = '/etc/ansible/roles'
+#    ansible.galaxy_command = 'ansible-galaxy install %{role_file}'
+    ansible.playbook = 'install_docker.yml' 
+  end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -40,6 +46,8 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder ".", "/playbook"
+  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder "roles", "/etc/ansible/roles"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
