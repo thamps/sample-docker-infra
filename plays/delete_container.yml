@@ -16,6 +16,6 @@
       state: absent 
   - name: destroy db 
     docker_container:
-      name: db 
+      name: mysqldb 
       image: sameersbn/mysql:latest 
       state: absent 

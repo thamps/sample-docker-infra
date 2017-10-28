@@ -22,7 +22,7 @@
         MYSQL_PASSWORD: test
         MYSQL_DATABASE: simple
       volumes:
-        - ./files/sql:/docker-entrypoint-initdb.d 
+        - /vagrant/files/sql:/docker-entrypoint-initdb.d 
   - name: create web application container
     docker_container:
       name: webapp
