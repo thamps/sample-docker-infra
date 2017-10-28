@@ -12,3 +12,6 @@ apt-get -y install ansible
 #Create the required ansible roles directory
 mkdir /etc/ansible/roles -p
 chmod 777 /etc/ansible/roles
+
+#Setup default host as localhost and local connection only
+echo "localhost	ansible_connection=local" >> /etc/ansible/hosts

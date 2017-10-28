@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/runner.pub"
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision :shell, path: "scripts/bootstrap.sh"
 
   config.vm.provision 'ansible', run: 'always', type: :ansible_local do |ansible|
 #    ansible.galaxy_role_file = '/vagrant/requirements.yml'
