@@ -7,7 +7,8 @@ cat /home/vagrant/.ssh/runner.pub >> /home/vagrant/.ssh/authorized_keys
 apt-add-repository ppa:ansible/ansible
 apt-get update
 apt-get -y install software-properties-common
-apt-get -y install ansible
+apt-get -y install ansible python-pip
+pip install docker-py
 
 #Create the required ansible roles directory
 mkdir /etc/ansible/roles -p
