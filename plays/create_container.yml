@@ -4,11 +4,6 @@
   become: yes
   become_method: sudo
   tasks:
-  - name: logon to my hub
-    docker_login:
-      username: thamps
-      password: bronzedoor70
-      email: ajith.thampi@gmail.com
   - name: create database mysql container
     docker_container:
       name: mysqldb
