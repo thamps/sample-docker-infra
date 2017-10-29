@@ -14,14 +14,24 @@ A simple docker infrastructure built using Ansible, Vargrant, Virtualbox and Doc
 - Ansible > 2.4
 - Docker-CE
 
-### Provision:
+### Provision Guest VM:
+
+Checkout code:
+
 `git clone https://github.com/thamps/sample-docker-infra`
+
+Run VM provision:
 
 `vagrant up`
 
-### Test:
+Get VM IP:
 
-[Web Test Page] (http://Guest_VM_IP or http://localhost:9999)
+`vagrant ssh -c "hostname -I | cut -d' ' -f2" 2>/dev/null`
 
-[PHP APP Page] (http://Guest_VM_IP/index.php or http://localhost:9999/index.php)
+
+### Access Application Page:
+
+[WEB TEST] (http://Guest_VM_IP or http://localhost:9999)
+
+[PHP APP] (http://Guest_VM_IP/index.php or http://localhost:9999/index.php)
 
